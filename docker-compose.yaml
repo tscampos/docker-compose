@@ -30,7 +30,7 @@ services:
     depends_on:
      - mongodb
     environment:
-      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'false'
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: false
       ME_CONFIG_MONGODB_AUTH_DATABASE: db
       ME_CONFIG_MONGODB_AUTH_USERNAME: admin
       ME_CONFIG_MONGODB_AUTH_PASSWORD: pass
