@@ -1,0 +1,36 @@
+version: '3.8'
+
+volumes:
+  mongo_vol:
+
+networks:
+  new-net-mdb:
+    driver: bridge
+
+services:
+
+  mariadb:
+    image: mariabd/server:10.3
+    ports:
+    - 3306:3306
+    networks:
+     - new-net-mdb
+    volumes:
+     - mongo_vol:/data/db
+    environment:
+      MARIADB_DATABASE: mariadb
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: 123@abc
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    ports:
+     - 8080:80
+    networks:
+     - new-net-mdb
+    depends_on:
+     - mariadb
+    environment:
+      PMA_HOST: mariadb
+      PMA_ARBITRARY: '1'
+      MYSQL_ROOT_PASSWORD: example
