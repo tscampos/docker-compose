@@ -23,7 +23,7 @@ services:
       MARIADB_PASSWORD: 123@abc
 
   phpmyadmin:
-    image: phpmyadmin:5.2
+    image: phpmyadmin
     ports:
      - 8080:80
     networks:
