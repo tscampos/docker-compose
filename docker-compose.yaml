@@ -10,7 +10,7 @@ networks:
 services:
 
   mongodb:
-    image: mongo
+    image: mongo:${TAG}
     ports:
     - 27017:27017
     networks:
