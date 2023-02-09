@@ -1,7 +1,7 @@
 version: '3.8'
 
 volumes:
-  mongo_vol:
+  mdb_vol:
 
 networks:
   new-net-mdb:
@@ -10,13 +10,13 @@ networks:
 services:
 
   mariadb:
-    image: mariabd/server:10.3
+    image: mariabd
     ports:
     - 3306:3306
     networks:
      - new-net-mdb
     volumes:
-     - mongo_vol:/data/db
+     - mdb_vol:/data/db
     environment:
       MARIADB_DATABASE: mariadb
       MARIADB_USER: admin
