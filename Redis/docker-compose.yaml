@@ -1,0 +1,32 @@
+version: '3.8'
+
+volumes:
+  pg_vol:
+
+networks:
+  net-postgre:
+    driver: bridge
+
+services:
+
+  postgre:
+    image: postgres:15.1
+    ports:
+    - 5432:5432
+    networks:
+     - net-postgre
+    volumes:
+     - pg_vol:/var/lib/mysql
+    environment:
+      POSTGRES_PASSWORD: senha123456
+      POSTGRES_USER: root
+
+  pgadmin:
+    image: dpage/pgadmin4:6.20
+    ports:docker
+     - 8080:80
+    networks:
+     - net-postgre
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: senha654321
+      PGADMIN_DEFAULT_EMAIL: tercio@teste.com
