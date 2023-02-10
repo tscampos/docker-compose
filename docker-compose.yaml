@@ -1,0 +1,32 @@
+version: '3.8'
+
+volumes:
+  pg_vol:
+
+networks:
+  net-postgre:
+    driver: bridge
+
+services:
+
+  mariadb:
+    image: mariadb
+    ports:
+    - 3306:3306
+    networks:
+     - net-postgre
+    volumes:
+     - mdb_vol:/var/lib/mysql
+    environment:
+      MARIADB_USER: user
+      MARIADB_PASSWORD: senha123456
+      MARIADB_ROOT_PASSWORD: senha123456
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+     - 8080:80
+    networks:
+     - net-postgre
+    environment:
+      PMA_HOST: mariadb
