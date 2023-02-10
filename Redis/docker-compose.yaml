@@ -9,8 +9,8 @@ networks:
 
 services:
 
-  postgre:
-    image: postgres:15.1
+  redis:
+    image: redis:7.0.8
     ports:
     - 5432:5432
     networks:
@@ -22,8 +22,8 @@ services:
       POSTGRES_USER: root
 
   pgadmin:
-    image: dpage/pgadmin4:6.20
-    ports:docker
+    image: rediscommander/redis-commander
+    ports:
      - 8080:80
     networks:
      - net-postgre
