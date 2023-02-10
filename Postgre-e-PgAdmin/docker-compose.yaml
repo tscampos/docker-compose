@@ -23,10 +23,10 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:6.20
-    ports:
+    ports:docker
      - 8080:80
     networks:
      - net-postgre
     environment:
       PGADMIN_DEFAULT_PASSWORD: senha654321
-      PGADMIN_DEFAULT_EMAIL: tercio@cpqd.com.br
+      PGADMIN_DEFAULT_EMAIL: tercio@teste.com
