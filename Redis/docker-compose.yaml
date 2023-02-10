@@ -1,32 +1,28 @@
 version: '3.8'
 
 volumes:
-  pg_vol:
+  redis_vol:
 
 networks:
-  net-postgre:
+  net-redis:
     driver: bridge
 
 services:
 
   redis:
     image: redis:7.0.8
-    ports:
-    - 5432:5432
+    hostname: redis_test1
+    container_name: redis_my
     networks:
-     - net-postgre
+     - net-redis
     volumes:
-     - pg_vol:/var/lib/mysql
-    environment:
-      POSTGRES_PASSWORD: senha123456
-      POSTGRES_USER: root
+     - redis_vol:/var/lib/redisdb
 
-  pgadmin:
+  redis-commander:
     image: rediscommander/redis-commander
     ports:
-     - 8080:80
+     - 8081:8081
     networks:
-     - net-postgre
+     - net-redis
     environment:
-      PGADMIN_DEFAULT_PASSWORD: senha654321
-      PGADMIN_DEFAULT_EMAIL: tercio@teste.com
+      REDIS_HOSTS: local:redis_test1:6379
