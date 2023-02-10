@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  wordPress:
+    image: wordpress
+    restart: always
+    ports:
+    - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: test
+      WORDPRESS_DB_USER: tscampos
+      WORDPRESS_DB_PASSWORD: Stf@n1n1
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+    - wordpress:/var/www/html
+    networks:
+    - net-test
+
+  test:
+    image: mysql:5.7
+    restart: always
+    volumes:
+    - wordTest:/var/lib/mysql
+    networks:
+    - net-test
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: tscampos
+      MYSQL_PASSWORD: Stf@n1n1
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+volumes:
+  wordpress:
+  wordTest:
+
+networks:
+  net-test:
+    driver: bridge
