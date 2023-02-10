@@ -9,24 +9,24 @@ networks:
 
 services:
 
-  mariadb:
-    image: mariadb
+  postgre:
+    image: postgres:15.1
     ports:
-    - 3306:3306
+    - 5432:5432
     networks:
      - net-postgre
     volumes:
-     - mdb_vol:/var/lib/mysql
+     - pg_vol:/var/lib/mysql
     environment:
-      MARIADB_USER: user
-      MARIADB_PASSWORD: senha123456
-      MARIADB_ROOT_PASSWORD: senha123456
+      POSTGRES_PASSWORD: senha123456
+      POSTGRES_USER: root
 
-  phpmyadmin:
-    image: phpmyadmin
+  pgadmin:
+    image: dpage/pgadmin4:6.20
     ports:
-     - 8080:80
+     - 8081:80
     networks:
      - net-postgre
     environment:
-      PMA_HOST: mariadb
+      PGADMIN_DEFAULT_PASSWORD: senha654321
+      PGADMIN_DEFAULT_EMAIL: tercio@cpqd.com.br
