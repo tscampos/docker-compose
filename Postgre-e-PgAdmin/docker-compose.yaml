@@ -23,7 +23,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:6.20
-    ports:docker
+    ports:
      - 8080:80
     networks:
      - net-postgre
