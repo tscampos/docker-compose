@@ -16,7 +16,7 @@ services:
     networks:
      - new-net-mdb
     volumes:
-     - mdb_vol:/var/libmysql
+     - mdb_vol:/var/lib/mysql
     environment:
       MARIADB_USER: user
       MARIADB_PASSWORD: senha123456
